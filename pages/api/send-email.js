@@ -14,7 +14,7 @@ export default async (req, res) => {
     //       console.log(data)
     //       await sendEmail({ email, data: data.toString('base64') });
     //   });
-      return res.status(200).end();
+      return res.status(200).send(dir);
     }
     return res.status(404).json({
         error: {
