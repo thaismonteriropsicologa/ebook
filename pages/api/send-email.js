@@ -18,7 +18,7 @@ export default async (req, res) => {
         
       fs.readFile(dir, async function (err,data){
           console.log(data)
-          //await sendEmail({ email, data: data.toString('base64') });
+          await sendEmail({ email, data: data.toString('base64') });
       });
       return res.status(200).send('ok');
     }
