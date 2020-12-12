@@ -8,18 +8,18 @@ export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
-      // const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/')
-      // console.log(dir)
-      fs.readdir(process.cwd(), (err, files) => {
-        files.forEach(file => {
-          console.log(file);
-        });
-      });
-        
-      // fs.readFile(pdf, async function (err,data){
-      //     console.log(data)
-      //     //await sendEmail({ email, data: data.toString('base64') });
+      const dir = path.join(process.cwd(), '/public/ebook.pdf')
+      console.log(dir)
+      // fs.readdir(process.cwd(), (err, files) => {
+      //   files.forEach(file => {
+      //     console.log(file);
+      //   });
       // });
+        
+      fs.readFile(dir, async function (err,data){
+          console.log(data)
+          //await sendEmail({ email, data: data.toString('base64') });
+      });
       return res.status(200).send('ok');
     }
     return res.status(404).json({
