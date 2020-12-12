@@ -7,12 +7,12 @@ export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
-      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, 'public/ebook.pdf')
+      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/public/ebook.pdf')
+      console.log(dir)
         
 
       fs.readFile(dir , async function (err,data){
           console.log(data)
-          return res.status(200).send(data);
           await sendEmail({ email, data: data.toString('base64') });
       });
       return res.status(200).send(dir);
