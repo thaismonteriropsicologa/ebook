@@ -7,7 +7,7 @@ export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
-      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/public/ebook.pdf')
+      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, './public/ebook.pdf')
       console.log(dir)
         
 
