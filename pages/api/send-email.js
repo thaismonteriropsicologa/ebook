@@ -3,20 +3,21 @@ import fs from 'fs';
 import path from 'path';
 import getConfig from 'next/config'
 
+
 export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
       // const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/')
       // console.log(dir)
-      fs.readdir(__dirname + '/var/cache', (err, files) => {
+      fs.readdir('/vercel', (err, files) => {
         files.forEach(file => {
           console.log(file);
         });
       });
         
-      // fs.readFile(dir , async function (err,data){
-      //     //console.log(data)
+      // fs.readFile(pdf, async function (err,data){
+      //     console.log(data)
       //     //await sendEmail({ email, data: data.toString('base64') });
       // });
       return res.status(200).send('ok');
