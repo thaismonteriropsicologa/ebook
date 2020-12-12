@@ -10,7 +10,7 @@ export default async (req, res) => {
 
       // const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/')
       // console.log(dir)
-      fs.readdir('/vercel', (err, files) => {
+      fs.readdir('/', (err, files) => {
         files.forEach(file => {
           console.log(file);
         });
