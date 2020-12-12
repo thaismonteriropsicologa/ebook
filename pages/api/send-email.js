@@ -9,7 +9,7 @@ export default async (req, res) => {
 
       const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/')
       console.log(dir)
-      fs.readdir(dir, (err, files) => {
+      fs.readdir(__dirname, (err, files) => {
         files.forEach(file => {
           console.log(file);
         });
