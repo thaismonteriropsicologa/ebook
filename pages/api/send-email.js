@@ -7,7 +7,7 @@ export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
-      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, 'static/ebook.pdf')
+      const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, '/ebook.pdf')
       console.log(dir)
         
       fs.readFile(dir , async function (err,data){
