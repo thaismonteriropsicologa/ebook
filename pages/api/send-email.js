@@ -19,7 +19,7 @@ export default async (req, res) => {
       //     //console.log(data)
       //     //await sendEmail({ email, data: data.toString('base64') });
       // });
-      return res.status(200).send();
+      return res.status(200).send('ok');
     }
     return res.status(404).json({
         error: {
