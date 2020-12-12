@@ -8,8 +8,10 @@ export default async (req, res) => {
       const { email } = req.body;
 
       const dir = path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, 'public/ebook.pdf')
-    
+        console.log(dir)
+
       fs.readFile(dir , async function (err,data){
+          console.log(data)
           await sendEmail({ email, data: data.toString('base64') });
       });
       return res.status(200).end();
