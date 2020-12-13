@@ -4,7 +4,7 @@ const SENDGRID_API = 'https://api.sendgrid.com/v3/mail/send'
 
 const sendEmail = async ({ email, data }) => {
   try {
-    await fetch(SENDGRID_API, {
+    const t = await fetch(SENDGRID_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,6 +42,8 @@ const sendEmail = async ({ email, data }) => {
         ]
       })
     });
+
+    console.log(t)
 
   } catch (e) {
     console.log(e)
