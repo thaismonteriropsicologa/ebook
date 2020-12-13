@@ -1,14 +1,13 @@
 import { sendEmail } from '../../utils/sendEmail';
 import fs from 'fs';
 import path from 'path';
-import getConfig from 'next/config'
 
 
 export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
 
-      const dir = path.join(process.cwd(), '/public/ebook.pdf')
+      const dir = path.join(process.cwd(), '/ebook.pdf')
       console.log(dir)
       // fs.readdir(process.cwd(), (err, files) => {
       //   files.forEach(file => {
