@@ -5,10 +5,11 @@ import axios from 'axios'
 export default function Home() {
   const [email, setEmail] = useState('');
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    axios.post('/api/subscribe', { email })
-    axios.post('/api/send-email', { name: 'david', email })
+    await axios.post('/api/send-email', { name: 'david', email })
+    await axios.post('/api/subscribe', { email })
+    
 
   }
 
