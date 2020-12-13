@@ -10,7 +10,13 @@ export default async (req, res) => {
       const dir = path.join(process.cwd(), 'public/ebook.pdf')
      
       fs.readFile(dir, async function (err,data){
-          await sendEmail({ email, data: data.toString('base64') });
+        try {
+          const t = await sendEmail({ email, data: data.toString('base64') });
+          console.log(t)
+        } catch (e) {
+          console.log(e)
+        } 
+       
       });
       return res.status(200).send('ok');
     }
