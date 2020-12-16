@@ -9,15 +9,15 @@ const sendWithAtachments = async (to, data) => {
       from: 'no-reply@hellenfitness.com.br',
       subject: 'Seu e-book chegou',
       html: `Que legal, <br/> <br/>Seu e-book chegou aproveite! <br/><br/> Depois me conta o que você achou da leitura.`,
-      attachments: [
-          {
-            content: data,
-            filename: 'ebook.pdf',
-            type: 'application/pdf',
-            disposition: 'attachment',
-            contentId: 'mypdf'
-          }
-      ]
+      // attachments: [
+      //     {
+      //       content: data,
+      //       filename: 'ebook.pdf',
+      //       type: 'application/pdf',
+      //       disposition: 'attachment',
+      //       contentId: 'mypdf'
+      //     }
+      // ]
   }); 
   console.log('email enviado ');
 }
