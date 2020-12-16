@@ -1,4 +1,4 @@
-import { sendEmail } from '../../utils/sendEmail';
+import { sendWithAtachments } from '../../utils/sendEmail';
 import fs from 'fs';
 import path from 'path';
 
@@ -11,11 +11,7 @@ export default async (req, res) => {
      
       fs.readFile(dir, async function (err,data){
         try {
-          const t = await sendEmail({ email, data: data.toString('base64') });
-          setTimeout(() => {
-            console.log('test')
-          }, 2000)
-          console.log(t)
+          await sendWithAtachments({ email, data: data.toString('base64') });
 
         } catch (e) {
           console.log(e)

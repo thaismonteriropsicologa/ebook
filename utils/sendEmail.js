@@ -1,37 +1,15 @@
-import fetch from 'node-fetch'
+const sendgrid = require('@sendgrid/mail');
 
-const SENDGRID_API = 'https://api.sendgrid.com/v3/mail/send'
+sendgrid.setApiKey('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');
 
-const sendEmail = async ({ email, data }) => {
-  try {
-    const t = await fetch(SENDGRID_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`
-      },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [
-              {
-                email
-              }
-            ],
-            subject: 'Seu e-book chegou'
-          }
-        ],
-        from: {
-          email: 'noreply@thaismonteiro.com',
-          name: 'Dra. Thais Monteiro'
-        },
-        content: [
-          {
-            type: 'text/html',
-            value: `Que legal, <br/> <br/>Seu e-book chegou aproveite! <br/><br/> Depois me conta o que você achou da leitura.`
-          }
-        ],
-        attachments: [
+
+const sendWithAtachments = async (to, data) => {
+  sendgrid.send({
+      to: to,
+      from: 'no-reply@hellenfitness.com.br',
+      subject: 'Seu e-book chegou',
+      html: `Que legal, <br/> <br/>Seu e-book chegou aproveite! <br/><br/> Depois me conta o que você achou da leitura.`,
+      attachments: [
           {
             content: data,
             filename: 'ebook.pdf',
@@ -39,16 +17,9 @@ const sendEmail = async ({ email, data }) => {
             disposition: 'attachment',
             contentId: 'mypdf'
           }
-        ]
-      })
-    });
-
-    console.log(t)
-
-  } catch (e) {
-    console.log(e)
-  }
-    
+      ]
+  }); 
+  console.log('email enviado ');
 }
 
-export { sendEmail };
+export { sendWithAtachments };
