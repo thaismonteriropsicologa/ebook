@@ -1,6 +1,6 @@
 const sendgrid = require('@sendgrid/mail');
 
-sendgrid.setApiKey('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');
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 const sendWithAtachments = async (to, data) => {
