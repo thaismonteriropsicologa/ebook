@@ -7,21 +7,24 @@ import Swal from 'sweetalert2'
 
 export default function Home() {
   const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true)
-    const res = await axios.post('/api/send-email', { name: 'david', email })
-    await axios.post('/api/subscribe', { email })
+    const res = await axios.post('/api/send-email', { userName, email })
+    await axios.post('/api/subscribe', { email, userName })
     if (res.data) {
       setIsLoading(false)
       Swal.fire({
         title: 'Seu E-book esta a caminho!',
         text: 'Fique de olho no seu e-mail, se o e-book não chegar, dê uma olhada na caixa de spam!',
         icon:'success',
-        confirmButtonColor: 'black',
+        confirmButtonColor: '#aed0d4',
       }) 
+      setEmail('')
+      setUserName('')
     }
 
   }
@@ -37,7 +40,7 @@ export default function Home() {
       <main className='background-pink'>
         <img className='avatar' src='/psico.jpg' alt='foto'></img>
         <p className="description">
-          Dra. Thais Monteiro <br/> Psicóloga
+          Thais Monteiro <br/> Psicóloga
         </p>
         <h5 className="title">
           Ebook Grátis - Maneiras práticas de lidar com a ansiedade
@@ -52,11 +55,19 @@ export default function Home() {
              <div className='form-group mb-3'>
                <input 
                  className='form-control' 
-                 type='email' 
-                 placeholder='Digite seu melhor E-mail' 
-                 value={email}
-                 onChange={(e) => setEmail(e.target.value)}
+                 type='text' 
+                 placeholder='Me diga seu nome' 
+                 value={userName}
+                 onChange={(e) => setUserName(e.target.value)}
                />
+              <br/>
+              <input 
+                className='form-control' 
+                type='email' 
+                placeholder='Digite seu melhor E-mail' 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
                <br/>
                <button onClick={(e) => onSubmit(e)} className='btn btn-dark form-control'>
                  Receber E-book
@@ -90,7 +101,7 @@ export default function Home() {
         }
 
         .background-pink {
-          background-color: #ffb6c1;
+          background-color: #aed0d4;
           padding: 50px;
         }
         

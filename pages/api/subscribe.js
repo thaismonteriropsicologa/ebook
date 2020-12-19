@@ -22,7 +22,7 @@ async function connectToDatabase (uri) {
 }
 
 export default async (request, response) => {
-  const { email } = request.body; 
+  const { email, userName } = request.body; 
 
   const db = await connectToDatabase(process.env.MONGODB_URI);
 
@@ -34,6 +34,7 @@ export default async (request, response) => {
     if (!savedEmail) {
       await collection.insertOne({
         email,
+        userName,
         subscribedAt: new Date(),
       });
     }
