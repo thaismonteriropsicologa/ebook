@@ -2,14 +2,27 @@ import Head from 'next/head'
 import { useState } from 'react'
 import axios from 'axios'
 
+import ReactLoading from 'react-loading'
+import Swal from 'sweetalert2'
+
 export default function Home() {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/api/send-email', { name: 'david', email })
+    setIsLoading(true)
+    const res = await axios.post('/api/send-email', { name: 'david', email })
     await axios.post('/api/subscribe', { email })
-    
+    if (res.data) {
+      setIsLoading(false)
+      Swal.fire({
+        title: 'Seu E-book esta a caminho!',
+        text: 'Fique de olho no seu e-mail, se o e-book não chegar, dê uma olhada na caixa de spam!',
+        icon:'success',
+        confirmButtonColor: 'black',
+      }) 
+    }
 
   }
 
@@ -32,22 +45,26 @@ export default function Home() {
        
         <br/><br/>
         <div>
-          <form className='email-form'>
-            <div className='form-group mb-3'>
-              <input 
-                className='form-control' 
-                type='email' 
-                placeholder='Digite seu melhor E-mail' 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <br/>
-              <button onClick={(e) => onSubmit(e)} className='btn btn-dark form-control'>
-                Receber E-book
-              </button>
-            </div>
-           
-          </form>
+          {isLoading ? 
+            <ReactLoading type={"bars"} color={"white"} /> 
+            :
+             <form className='email-form'>
+             <div className='form-group mb-3'>
+               <input 
+                 className='form-control' 
+                 type='email' 
+                 placeholder='Digite seu melhor E-mail' 
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+               />
+               <br/>
+               <button onClick={(e) => onSubmit(e)} className='btn btn-dark form-control'>
+                 Receber E-book
+               </button>
+             </div>
+           </form>
+          }
+         
         </div>
         
       </main>

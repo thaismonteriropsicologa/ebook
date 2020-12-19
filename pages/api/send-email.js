@@ -9,14 +9,14 @@ export default async (req, res) => {
       const dir = path.join(process.cwd(), 'public/ebook.pdf')
       fs.readFile(dir, async function (err,data){
         try {
-          await sendWithAtachments(email, data.toString('base64'));
+          //await sendWithAtachments(email, data.toString('base64'));
 
         } catch (e) {
           console.log(e)
         } 
        
       });
-      return res.status(200).send('ok');
+      return res.status(200).send(true);
     }
     return res.status(404).json({
         error: {
