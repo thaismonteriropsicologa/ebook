@@ -6,12 +6,10 @@ import path from 'path';
 export default async (req, res) => {
     if(req.method === 'POST') {
       const { email } = req.body;
-
       const dir = path.join(process.cwd(), 'public/ebook.pdf')
-     
       fs.readFile(dir, async function (err,data){
         try {
-          await sendWithAtachments({ email, data: data.toString('base64') });
+          await sendWithAtachments(email, data.toString('base64'));
 
         } catch (e) {
           console.log(e)
