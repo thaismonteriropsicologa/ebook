@@ -26,7 +26,12 @@ export default function Home() {
 
       <main className='background-pink'>
         <div>
-        <CSVLink data={data}>Baixar lista</CSVLink>
+        <CSVLink 
+          data={data} 
+          filename={"lista.csv"}
+          className="btn btn-dark"
+          target="_blank"
+        >Baixar lista</CSVLink>
         </div>
       
         
